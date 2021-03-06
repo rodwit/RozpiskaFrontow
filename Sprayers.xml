@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SprayersInformation>
+	<SprayersList>
+		<Sprayer>
+			Sprayer 1
+		</Sprayer>
+		<Sprayer>
+			Sprayer 2
+		</Sprayer>
+		<Sprayer>
+			Sprayer 3
+		</Sprayer>
+		<Sprayer>
+			
+		</Sprayer>
+	</SprayersList>
+	<Address>
+		Adress space
+	</Address>
+</SprayersInformation> 
