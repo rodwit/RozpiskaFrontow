@@ -162,7 +162,10 @@ bool PageList::checkIfDuplicated(FrontsDataStruct::Front front, int updatedRow)
 
 			//remove old cell if calling from update
 			if(updatedRow != -1)
+			{
 				ui->tableWidgetFronts->removeRow(updatedRow);
+				updateCounter();
+			}
 		}
 		return false;
 	}
