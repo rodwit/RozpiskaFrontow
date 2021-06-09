@@ -153,7 +153,7 @@ bool PageList::checkIfDuplicated(FrontsDataStruct::Front front, int updatedRow)
 	}
 	if(duplicateIndex != -1)
 	{
-		QMessageBox messageBox(QMessageBox::Warning,"Wykryto duplikat","Dodawany front już istnieje!\nCzy połączyć oba fronty?",QMessageBox::Yes | QMessageBox::No,this);
+		QMessageBox messageBox(QMessageBox::Warning,"Wykryto duplikat","Dodawany front już istnieje!<br>Czy połączyć oba fronty?<br><b>( " + QString::number(front.height) +" x "+ QString::number(front.width) + " = "+ QString::number(front.amount)+")</b>",QMessageBox::Yes | QMessageBox::No,this);
 
 		if(messageBox.exec() == QMessageBox::Yes)
 		{
