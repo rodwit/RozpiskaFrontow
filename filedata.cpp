@@ -119,12 +119,16 @@ bool FileData::SaveOrder(FrontsDataStruct::Order order, bool saveAs)
 	catch(QException e)
 	{
 		_file->close();
+		QMessageBox info(QMessageBox::Warning, "Zapisywanie","Nie udało się zapisać pliku",QMessageBox::Ok);
+		info.exec();
 		return false;
 	}
 
 	_file->flush();
 	_file->close();
 
+	QMessageBox info(QMessageBox::Information, "Zapisywanie","Zapisano plik",QMessageBox::Ok);
+	info.exec();
 	return true;
 }
 
