@@ -154,7 +154,11 @@ bool PageList::checkIfDuplicated(FrontsDataStruct::Front front, int updatedRow)
 	if(duplicateIndex != -1)
 	{
 		QMessageBox messageBox(QMessageBox::Warning,"Wykryto duplikat","Dodawany front już istnieje!<br>Czy połączyć oba fronty?<br><b>( " + QString::number(front.height) +" x "+ QString::number(front.width) + " = "+ QString::number(front.amount)+")</b>",QMessageBox::Yes | QMessageBox::No,this);
-
+		//change color of duplicated row
+		ui->tableWidgetFronts->item(duplicateIndex,0)->setBackground(QColor(255,255,102));
+		ui->tableWidgetFronts->item(duplicateIndex,1)->setBackground(QColor(255,255,102));
+		ui->tableWidgetFronts->item(duplicateIndex,2)->setBackground(QColor(255,255,102));
+		ui->tableWidgetFronts->item(duplicateIndex,3)->setBackground(QColor(255,255,102));
 		if(messageBox.exec() == QMessageBox::Yes)
 		{
 			auto duplicate = ui->tableWidgetFronts->item(duplicateIndex,2);
@@ -167,6 +171,12 @@ bool PageList::checkIfDuplicated(FrontsDataStruct::Front front, int updatedRow)
 				updateCounter();
 			}
 		}
+		//change color of duplicated row to normal
+		ui->tableWidgetFronts->item(duplicateIndex,0)->setBackground(QColor(255,255,255));
+		ui->tableWidgetFronts->item(duplicateIndex,1)->setBackground(QColor(255,255,255));
+		ui->tableWidgetFronts->item(duplicateIndex,2)->setBackground(QColor(255,255,255));
+		ui->tableWidgetFronts->item(duplicateIndex,3)->setBackground(QColor(255,255,255));
+
 		return false;
 	}
 	return true;
