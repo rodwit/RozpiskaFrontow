@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include <QException>
 
-bool FileData::openFile(bool toSave, bool saveAs, QString pathArg)
+bool FileData::openFile(bool toSave, bool saveAs, QString pathArg, QString defaultName)
 {
 	QString lastPath = (toSave) ? _lastSavePath : _lastOpenPath;
 
@@ -14,7 +14,7 @@ bool FileData::openFile(bool toSave, bool saveAs, QString pathArg)
 	if(toSave)
 	{
 		if(_fileString.isEmpty() || saveAs)
-			path = QFileDialog::getSaveFileName(_parent,"Zapisz plik", lastPath,"Plik RFDAT (*.rfdat)");
+			path = QFileDialog::getSaveFileName(_parent,"Zapisz plik", lastPath +"/"+ defaultName,"Plik RFDAT (*.rfdat)");
 		else
 			path = _fileString;
 		fileOptions = QIODevice::WriteOnly | QIODevice::Truncate;
@@ -82,17 +82,17 @@ bool FileData::SaveOrder(FrontsDataStruct::Order order, bool saveAs)
 	bool flag = false;
 	if(_file == nullptr)
 	{
-		if(!openFile(true))
+		if(!openFile(true,false,"",order.name))
 			return false;
 		else
 			flag = true;
 	}
 
 	if(flag == false && saveAs)
-		openFile(true,true);
+		openFile(true,true,"",order.name);
 
 	if(_file->isOpen() == false)
-		openFile(true);
+		openFile(true,false,"",order.name);
 
 
 	try

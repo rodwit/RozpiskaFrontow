@@ -16,7 +16,7 @@ class FileData
 		QDataStream _stream;
 		QString _lastSavePath;
 		QString _lastOpenPath;
-		bool openFile(bool toSave, bool saveAs = false, QString pathArg = "");
+		bool openFile(bool toSave, bool saveAs = false, QString pathArg = "", QString defaultName = "");
 	public:
 		FileData(QWidget *parent, QString lastSavePath, QString lastOpenPath);
 		~FileData();
