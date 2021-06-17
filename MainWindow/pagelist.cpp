@@ -34,7 +34,6 @@ void PageList::Clear()
 	ui->checkBoxCountM2->setChecked(false);
 	ui->checkBoxCountM2->setEnabled(false);
 	ui->checkBoxUnderline->setChecked(false);
-	ui->checkBoxUnderline->setEnabled(false);
 	ui->labelFrontsCount->setText("Ilość frontów: 0");
 	int count = ui->tableWidgetFronts->rowCount();
 	for(int i=0;  i < count; ++i)
@@ -204,7 +203,6 @@ void PageList::addFront(FrontsDataStruct::Front front, int insert)
 	{
 		ui->checkBoxCountM2->setEnabled(true);
 		ui->checkBoxCountM2->setChecked(true);
-		ui->checkBoxUnderline->setEnabled(true);
 	}
 
 	if(ui->checkBoxCount->isEnabled() == false && ui->tableWidgetFronts->rowCount() >= 2)
