@@ -30,6 +30,7 @@ class PageOrder : public QWidget
 		void ActionDelete() {on_pushButtonDelete_clicked();};
 		void ActionEdit();
 		void ActionPrint() {on_pushButtonPrint_clicked();};
+		bool IsOrderUpdated() { return _isOrderUpdated;};
 
 	private slots:
 		void on_pushButtonAdd_clicked();
@@ -51,6 +52,7 @@ class PageOrder : public QWidget
 	private:
 		Ui::PageOrder *ui;
 		MainWindow *_parent;
+		bool _isOrderUpdated;
 		PageList *_pageList;
 		bool _editList;
 		int _transmittedItem;

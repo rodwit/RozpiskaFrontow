@@ -100,13 +100,14 @@ void MainWindow::ChangePage(MainWindow::PAGES page)
 	}
 }
 
-void MainWindow::SaveOrder(FrontsDataStruct::Order order, bool saveAS)
+bool MainWindow::SaveOrder(FrontsDataStruct::Order order, bool saveAS)
 {
 	if(_fileData->SaveOrder(order, saveAS) == false)
-		return;
+		return false;
 	_settings->setValue(QVariant::fromValue(SETTINGS_KEYS::LAST_SAVE_PATH).toString(),_fileData->GetCurrenPath());
 
 	this->setWindowTitle(_windowTitle + " - " + _fileData->GetFileName());
+	return true;
 }
 
 void MainWindow::createMenus()
@@ -138,6 +139,13 @@ void MainWindow::loadOrder(QString path)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+	if(_pageOrder->IsOrderUpdated())
+	{
+		QMessageBox msg(QMessageBox::Warning,"Zmodyfikowano zamównienie", "Zamówienie zostało zmodyfikowane. Zapisać teraz?",QMessageBox::Yes | QMessageBox::No);
+		if(msg.exec() == QMessageBox::Yes)
+			_pageOrder->ActionSave();
+	}
+
 	if(this->isMaximized() == false)
 	{
 		_settings->setValue("WindowSize",this->size());

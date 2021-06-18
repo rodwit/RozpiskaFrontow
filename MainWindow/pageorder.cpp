@@ -29,6 +29,8 @@ PageOrder::PageOrder(QWidget *parent,PageList *pageList) :
 
 	getSprayers();
 
+	_isOrderUpdated = false;
+
 
 }
 
@@ -60,6 +62,8 @@ void PageOrder::GetListResult(bool value)
 {
 	if(value)
 	{
+		_isOrderUpdated = true;
+
 		if(_editList)
 		{
 			_order.list.replace(ui->listWidget->currentRow(),_pageList->GetFrontsList());
@@ -178,14 +182,16 @@ void PageOrder::on_pushButtonSave_clicked()
 {
 	_order.name = ui->lineEditOrderName->text();
 	_order.sprayer = ui->comboBoxSprayers->currentText();
-	getParent()->SaveOrder(_order);
+	if(getParent()->SaveOrder(_order))
+		_isOrderUpdated = false;
 }
 
 void PageOrder::ActionSaveAs()
 {
 	_order.name = ui->lineEditOrderName->text();
 	_order.sprayer = ui->comboBoxSprayers->currentText();
-	getParent()->SaveOrder(_order,true);
+	if(getParent()->SaveOrder(_order,true))
+		_isOrderUpdated = false;
 }
 
 

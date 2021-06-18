@@ -38,7 +38,7 @@ class MainWindow : public QMainWindow
 
 		void ChangePage(PAGES page);
 		QSettings* GetSettings() {return _settings;}
-		void SaveOrder(FrontsDataStruct::Order order, bool saveAS = false);
+		bool SaveOrder(FrontsDataStruct::Order order, bool saveAS = false);
 
 	private slots:
 		void on_actionNew_triggered();
