@@ -14,7 +14,7 @@ bool FileData::openFile(bool toSave, bool saveAs, QString pathArg, QString defau
 	if(toSave)
 	{
 		if(_fileString.isEmpty() || saveAs)
-			path = QFileDialog::getSaveFileName(_parent,"Zapisz plik", lastPath +"/"+ defaultName,"Plik RFDAT (*.rfdat)");
+			path = QFileDialog::getSaveFileName(_parent,"Zapisz plik", lastPath +"/"+ defaultName + ".rfdat","Plik RFDAT (*.rfdat)");
 		else
 			path = _fileString;
 		fileOptions = QIODevice::WriteOnly | QIODevice::Truncate;
